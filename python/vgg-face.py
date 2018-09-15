@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 
 # In[2]:
 
-
 model = Sequential()
 model.add(ZeroPadding2D((1,1),input_shape=(224,224, 3)))
 model.add(Convolution2D(64, (3, 3), activation='relu'))
@@ -100,55 +99,61 @@ def findEuclideanDistance(source_representation, test_representation):
     return euclidean_distance
 
 
-# In[6]:
-
-
 vgg_face_descriptor = Model(inputs=model.layers[0].input, outputs=model.layers[-2].output)
 
-
-# In[22]:
-
-
-epsilon = 0.40
 
 def verifyFace(img1, img2):
     img1_representation = vgg_face_descriptor.predict(preprocess_image('../dataset/testing/%s' % (img1)))[0,:]
     img2_representation = vgg_face_descriptor.predict(preprocess_image('../dataset/testing/%s' % (img2)))[0,:]
-    
     cosine_similarity = findCosineSimilarity(img1_representation, img2_representation)
     euclidean_distance = findEuclideanDistance(img1_representation, img2_representation)
-    similarity = epsilon - cosine_similarity
-    print("Cosine similarity: ",cosine_similarity)
-    print("Euclidean distance: ",euclidean_distance)
-    print("similarity:",similarity)
-    if(similarity>0.1):
-        print("verified... they are same person")
-    else:
-        print("unverified! they are not same person!")
-    f = plt.figure()
-    f.add_subplot(1,2, 1)
-    plt.imshow(image.load_img('../dataset/testing/%s' % (img1)))
-    plt.xticks([]); plt.yticks([])
-    f.add_subplot(1,2, 2)
-    plt.imshow(image.load_img('../dataset/testing/%s' % (img2)))
-    plt.xticks([]); plt.yticks([])
-    plt.show(block=True)
-    print("-----------------------------------------")
+    epsilon1 = 0.30
+    epsilon2 = 120
+    cosineSame = epsilon1 - cosine_similarity
+    euclideanSame = epsilon2- euclidean_distance
+    # print("Cosine similarity: ",cosine_similarity)
+    # print("Euclidean distance: ",euclidean_distance)
+    # print("similarity:",similarity)
+    # if(similarity>0.1):
+    #     print("verified... they are same person")
+    # else:
+    #     print("unverified! they are not same person!")
+    # f = plt.figure()
+    # f.add_subplot(1,2, 1)
+    # plt.imshow(image.load_img('../dataset/testing/%s' % (img1)))
+    # plt.xticks([]); plt.yticks([])
+    # f.add_subplot(1,2, 2)
+    # plt.imshow(image.load_img('../dataset/testing/%s' % (img2)))
+    # plt.xticks([]); plt.yticks([])
+    # plt.show(block=True)
+    # print("-----------------------------------------")
+    print("similarity:", cosineSame, euclideanSame)
+    return cosineSame
 
+def matchFaces(img1, dataset):
+    top10 = {}
+    top10[0] = 100000000
+    for item in dataset:
+        img2 = getImagePath(data[item]["path"])
+        similarity = verifyFace(img1, img2)
+        if similarity>0:
+            if len(top10)<11:
+                top10[id] = similarity
+            else:
+                del top10[findMin(top10)]
+                top10[id] = similarity
+    del top10[0]
+    return top10.keys()
 
-# In[23]:
+def findMin(l):
+    mini = 0
+    for i in l:
+        if l[i]<l[mini]:
+            mini = i
+    return mini
 
+                
 
-verifyFace("1.jpg", "2.jpg")
-verifyFace("1.jpg", "3.jpg")
-verifyFace("1.jpg", "4.jpg")
-verifyFace("1.jpg", "5.jpg")
-verifyFace("1.jpg", "6.jpg")
-verifyFace("1.jpg", "7.jpg")
-
-
-
-# In[ ]:
 
 
 
