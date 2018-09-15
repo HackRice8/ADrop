@@ -103,7 +103,7 @@ vgg_face_descriptor = Model(inputs=model.layers[0].input, outputs=model.layers[-
 
 
 def verifyFace(img1, img2):
-    img1_representation = vgg_face_descriptor.predict(preprocess_image('../dataset/testing/%s' % (img1)))[0,:]
+    img1_representation = vgg_face_descriptor.predict(preprocess_image('../dataset/victims/%s' % (img1)))[0,:]
     img2_representation = vgg_face_descriptor.predict(preprocess_image('../dataset/testing/%s' % (img2)))[0,:]
     cosine_similarity = findCosineSimilarity(img1_representation, img2_representation)
     euclidean_distance = findEuclideanDistance(img1_representation, img2_representation)
@@ -127,9 +127,9 @@ def verifyFace(img1, img2):
     # plt.xticks([]); plt.yticks([])
     # plt.show(block=True)
     # print("-----------------------------------------")
-    print("similarity:", cosineSame, euclideanSame)
+    print("similarity:", cosineSame)
     return cosineSame
-
+#img1 is the tested image path, and dataset needs to be json.
 def matchFaces(img1, dataset):
     top10 = {}
     top10[0] = 100000000
