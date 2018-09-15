@@ -1,0 +1,20 @@
+{
+ "victim1" : 
+ {
+ "id" : "123",
+ "name" : "Tom",
+ "path" : "13.jpg"
+ },
+ "victim2" :
+ {
+ "id" : "124",
+ "name" : "Jack",
+ "path" : "14.jpg"
+ },
+ "victim3" :
+ {
+ "id" : "125",
+ "name" : "Tim",
+ "path" : "110.jpg"
+ }
+}
