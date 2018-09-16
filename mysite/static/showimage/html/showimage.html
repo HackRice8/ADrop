@@ -19,59 +19,59 @@
 
 <div class ="navigator">
 
-  <div id="brand" class="center1" style="position:relative; display:inline-block; font-weight: bold; font-size:22px; color:white; ">We found multiple possible matches. Please select your loved one.</div>
+  <div id="brand" class="center1" style="position:relative; display:inline-block; font-weight: bold; font-size:22px; color:white; "><p id = "brandp">Please wait for seconds, we are searching...</p></div>
   </div>
 
 <div id="btnContainer">
 
 <div class="row">
   <div id ="top1" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top2" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top3" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top4" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top5" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200"">
     <input type="checkbox">
   </div>
 
   <div id ="top6" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top7" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
     </div>
 
   <div id ="top8" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top9" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 
   <div id ="top10" class="column">
-    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png" width="200" height="200">
     <input type="checkbox">
   </div>
 </div>
@@ -100,19 +100,18 @@
                loadImageById(result);
            }
        });
-    },20000);
+    },10000);
 
     function loadImageById(idDict){
         var i = 1;
-        var baseDir = 'https://127.0.0.1/static/dataset/victims/';
+        var baseDir = 'http://127.0.0.1:8000/static/dataset/victims/';
+        $("#brandp").text("We found multiple possible matches. Please select your loved one");
         for(var property in idDict){
+            var item = idDict[property];
             var top = document.getElementById("top"+i);
-            top.childNodes[0].setAttribute('src',baseDir + idDict['path']);
-            console.log(baseDir + idDict['path']);
+            top.childNodes[1].setAttribute('src',baseDir + item['path']);
+            i++;
         }
-        idDict.forEach(function (key,value) {
-
-        });
 
     }
 

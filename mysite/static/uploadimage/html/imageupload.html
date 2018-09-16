@@ -67,7 +67,6 @@
 
     <script type="application/javascript">
         $( "#submitbutton" ).click(function(event) {
-
             $.ajax({
                 url: '/adrop_main/compareAndSave/',
                 type: 'POST',
@@ -76,6 +75,7 @@
                 processData: false,
                 contentType: false
             }).done(function(res) {
+                console.log("success!!!!")
                 window.location.href='http://127.0.0.1:8000/adrop_main/showImage/'
                 $.ajax({
                     url:'/adrop_main/compare/',

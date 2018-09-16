@@ -14,7 +14,7 @@ from django.conf import settings
 import matplotlib.pyplot as plt
 from keras.preprocessing import image
 
-
+import os
 
 
 client = MongoClient()
@@ -29,10 +29,14 @@ def compareAndSave(request):
     return JsonResponse({'error':False, 'message':"Uploaded successfully"})
 
 def compare(request):
+    if os._exists(settings.BASE_DIR+'/static/dataset/record.json'):
+        os.remove(settings.BASE_DIR+'/static/dataset/record.json')
+    open(settings.BASE_DIR + '/static/dataset/record.json', "w")
     result = test("0.jpg")
     #return JsonResponse(result)
     r = json.dumps(result)
     loaded_r = json.loads(r)
+
     with open(settings.BASE_DIR+'/static/dataset/record.json', "w") as f:
         json.dump(loaded_r, f)
     return JsonResponse(loaded_r)
@@ -143,12 +147,11 @@ def matchFaces(img1, dataset):
         img2 = dataset[item]["path"]
         victimID = dataset[item]["id"]
         similarity = verifyFace(img1, img2, vgg_face_descriptor)
-        if similarity > 0:
-            if len(top10) < 11:
-                top10[victimID] = similarity
-            else:
-                del top10[findMin(top10)]
-                top10[victimID] = similarity
+        if len(top10) < 11:
+            top10[victimID] = similarity
+        else:
+            del top10[findMin(top10)]
+            top10[victimID] = similarity
     del top10[0]
     newDict = dict()
     for key in top10.keys():
