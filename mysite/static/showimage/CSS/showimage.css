@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  background-image: url(https://s22.postimg.cc/ngk0detjl/sea-3652697.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+.navigator {
+  background-color:#00000030;
+}
+
+#brand {
+  font-family:"Montserrat"
+
+}
+
+.btn2 {
+background-color: Transparent;
+background-repeat:no-repeat;
+border: none;
+cursor:pointer;
+overflow: hidden;
+font-family:AvenirNext-Medium;
+font-size:16px;
+color:white;
+text-align:left;
+}
+
+.center1 {
+    display: block;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#btnContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1100px;
+}
+
+.center3 {
+  display: block;
+  position: absolute;
+ align: center;
+}

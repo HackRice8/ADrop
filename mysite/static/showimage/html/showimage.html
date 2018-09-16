@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>
+        reconnect.
+  </title>
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+     <link href="/static/showimage/css/showimage.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div class ="navigator">
+
+  <div id="brand" class="center1" style="position:relative; display:inline-block; font-weight: bold; font-size:22px; color:white; ">We found multiple possible matches. Please select your loved one.</div>
+  </div>
+
+<div id="btnContainer">
+
+<div class="row">
+  <div id ="top1" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top2" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top3" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top4" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top5" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top6" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top7" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+    </div>
+
+  <div id ="top8" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top9" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+
+  <div id ="top10" class="column">
+    <img src="https://s22.postimg.cc/fvhwkt6q9/image.png">
+    <input type="checkbox">
+  </div>
+</div>
+</div>
+
+  <div align="center">
+          <form>
+            <input id="informationscreen" onclick="submit()" class="btn2" type="submit" value="Next &rarr;" >
+          </form>
+  </div>
+<script>
+
+   var value = setInterval(function () {
+       $.ajax({
+           url:'/static/dataset/record.json',
+           type:'GET'
+       }).done(function (result) {
+           var i = 0;
+           for(var property in result){
+               if(Object.prototype.hasOwnProperty.call(result,property)){
+                  i++;
+               }
+           }
+           if(i>0){
+               console.log(result)
+               loadImageById(result);
+           }
+       });
+    },20000);
+
+    function loadImageById(idDict){
+        var i = 1;
+        var baseDir = 'https://127.0.0.1/static/dataset/victims/';
+        for(var property in idDict){
+            var top = document.getElementById("top"+i);
+            top.childNodes[0].setAttribute('src',baseDir + idDict['path']);
+            console.log(baseDir + idDict['path']);
+        }
+        idDict.forEach(function (key,value) {
+
+        });
+
+    }
+
+
+</script>
+
+</body>
+</html>
