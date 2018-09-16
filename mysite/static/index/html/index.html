@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Welcome to RiceBook.com
+    </title>
+    <meta charset="utf-8" name="author" content="Siyu Zhu">
+    <meta charset="utf-8" name="github" content="https://github.com/JasonChu1313">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class ="navigator" style="background-color:#0277BD;">
+        <div id="brand" style="position:relative; display:inline-block; left:10%; font-weight: bold; font-size:50px; color:white; ">Reconnect</div>
+        <div id="login" style="display:inline-block; float:right">
+
+            <form action="/adrop_main/uploadImage/" id="loginform" enctype="multipart/form-data" method="post" >
+                {% csrf_token %}
+              <p style="color:white;display:inline-block;position:relative; top:5px;">
+              Email or Phone <br>
+              <input type="text" placeholder="Email Address" name="login_username" id="login_username">
+            </p>
+            <p style="color:white;display:inline-block;position:relative; top:5px;">
+            Password <a href="/" style="color:#BDBDBD;">forgot password?</a><br>
+              <input type="text" placeholder="Password" name="login_password" id="login_password">
+            </p>
+            <p style="display:inline-block; position:relative;">
+               <input type="submit" id="loginbutton" class="btn btn-success" style="background-color:#1E88E5;;" >Log on</input>
+            </p>
+
+           </form>
+        </div>
+    </div>
+
+
+    <div id="information">
+        <div id="leftpart" style="position:relative; display:inline-block;" >
+        </div>
+        <div id="rightpart" style="position:relative; display:inline-block; float:right; clear:right; width:450px">
+          <div id="guideword">
+            <p style="font-weight: bold; font-size: 40px;">Create a new account</p>
+            <p> It's free and always will be. </p>
+          </div>
+          <form>
+              <p>
+                <input type="text" placeholder="Account" name="accountname" style="width:200px" required pattern="[A-Za-z]{1}[A-Za-z0-9]*">
+                <input type="text" placeholder="Display Name" style="width:200px" name="displayname">
+              </p>
+              <p>
+                <input type="text" placeholder="Email Address" name="emailaddress" style="width:400px" required pattern="[A-Za-z0-9]+\@[A-Za-z0-9]+\.[a-z]+">
+              </p>
+              <p>
+                <input type="text" placeholder="Phone Number" name="phonenumber" style="width:400px" required pattern="\d{3}[\-]\d{3}[\-]\d{4}">
+              </p>
+              <p>
+                <input type="text" placeholder="Password" name="password" style="width:400px" required>
+              </p>
+              <p>
+                <input type="text" placeholder="Password Confirmation" name="pwconfrimation" style="width:400px" required>
+              </p>
+              <p>
+                <input id="resetbutton" class="btn btn-primary btn-warning" type="reset" value="Reset">
+                <input id="submitbutton" onclick="submitSignin()" class="btn btn-primary btn-success" type="submit" value="Sign Up">
+              </p>
+              <input type="hidden" name="timestamp">
+
+          </form>
+        </div>
+    </div>
+    <script type="application/javascript" src="/static/index/js/index.js"></script>
+</body>
+</html>

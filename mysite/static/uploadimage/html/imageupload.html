@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="/static/uploadimage/css/imageupload.css" rel="stylesheet">
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+</head>
+<body>
+
+<div class="container">
+
+	<img src="https://s22.postimg.cc/o9ocgxg01/uploadbox.png" class="center">
+  <div class="centered">
+    <div id="information">
+          <div id="upload">
+           <p style="font-size:20px"> Upload a picture. <br>
+           We'll take care of the rest.</p>
+            <p>Please ensure that only your loved one is visible.</p>
+          </div>
+
+    <form id="uploadForm" enctype="multipart/form-data" method="post" >
+         {% csrf_token %}
+        <input type="file" name="imageFile" id="imageFile" /> <br>
+
+        <p> Optional search criteria: </p>
+              <p>
+                <select age="age">
+  <option value="Age">Age</option>
+  <option value="0-9">0-9</option>
+  <option value="10-19">10-19</option>
+  <option value="20-29">20-29</option>
+  <option value="30-39">30-39</option>
+  <option value="40-49">40-49</option>
+  <option value="50-59">50-59</option>
+  <option value="60-69">60-69</option>
+  <option value="70-79">70-79</option>
+  <option value="80+">80+</option>
+                </select>
+                <select sex="Sex">
+  <option value="Sex">Sex</option>
+  <option value="Female">Female</option>
+  <option value="Male">Male</option>
+                </select>
+              </p>
+
+              <p>
+                <input id="searchTextField" type="text" style="width:200px" placeholder="Enter a location">
+
+              </p>
+<hr><br>
+              <p>
+                <input id="submitbutton" class="btn" type="submit" value="Next">
+              </p>
+              <input type="hidden" name="timestamp">
+      </form>
+
+    </div>
+  </div>
+</div>
+
+    <script type="application/javascript">
+        $( "#submitbutton" ).click(function(event) {
+            $.ajax({
+                url: '/adrop_main/compareAndSave/',
+                type: 'POST',
+                cache: false,
+                data: new FormData($('#uploadForm')[0]),
+                processData: false,
+                contentType: false
+            }).done(function(res) {
+                console.log("success!!!!")
+                window.location.href='http://127.0.0.1:8000/adrop_main/showImage/'
+                $.ajax({
+                    url:'/adrop_main/compare/',
+                    type:'GET'
+                });
+
+            }).fail(function(res) {});
+        });
+
+
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+      <!--<script-->
+  <!--src="https://code.jquery.com/jquery-3.3.1.js"-->
+  <!--integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="-->
+  <!--crossorigin="anonymous"></script>-->
+
+  <!--<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>-->
+    <!--<link href="/static/index/css/imageupload.css" rel="stylesheet">-->
+  <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>-->
+<!--</head>-->
+<!--<body>-->
+    <!--<form id="uploadForm" enctype="multipart/form-data" method="post" >-->
+     <!--<input type="file" name="imageFile" id="imageFile" />-->
+    <!--</form>-->
+    <!--<script type="application/javascript">-->
+
+        <!--$('#imageFile').change(function(event) {-->
+           <!--var formData = new FormData(document.getElementById("uploadForm"))-->
+              <!--$.ajax({-->
+                <!--url:"/adrop_main/uploadimage/",-->
+                <!--type:'POST',-->
+                <!--cache:false,-->
+                <!--data:formData,-->
+                <!--processData:false,-->
+                <!--contentType:false,-->
+                <!--crossDomain: true,-->
+                <!--success:function(data){-->
+                    <!--console.log("success")-->
+                <!--}-->
+            <!--})-->
+
+          <!--});-->
+    <!--</script>-->
+
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,68 @@
+body {
+  background-image: url(https://s22.postimg.cc/ngk0detjl/sea-3652697.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.center {
+    display: block;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+.center-block {
+  display: block;
+  margin-left: 22%;
+}
+
+
+p {
+  font-family:Montserrat;
+}
+
+
+.btn {
+background-image:linear-gradient(-180deg, #d8d8d8 0%, #b3b3b3 100%);
+border:1px solid #979797;
+box-shadow:0 1px 2px 0 rgba(0,0,0,0.20), inset 0 2px 0 0 #ffffff;
+border-radius:6px;
+width:143px;
+height:34px;
+margin: 0 auto;
+}
+
+.btn2 {
+background-color: Transparent;
+background-repeat:no-repeat;
+border: none;
+cursor:pointer;
+overflow: hidden;
+font-family:AvenirNext-Medium;
+font-size:16px;
+color:#4a4a4a;
+text-align:left;
+}
+
+
+p {
+font-family:Montserrat;
+font-size:12px;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
