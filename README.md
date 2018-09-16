@@ -54,7 +54,16 @@ Match = Distance less than threshold
 Results:
 Top 10 most similar 
 profiles
-###Build up Web Application
+
+### Build up the web application
+* Step 1: 
+Upload Image
+* Step 2: 
+Run the facial matching algorithm back-end
+* Step 3: 
+Return top-10 most similar people
+* Step 4: 
+Fetch information and give feed back
 
 
 ## What's next for Reconnect
